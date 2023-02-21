@@ -68,8 +68,12 @@ def get_api_answer(timestamp):
                 'Не удалось получить ответ API, '
                 f'ошибка: {homework_statuses.status_code}'
                 f'причина: {homework_statuses.reason}'
-                f'текст: {homework_statuses.text}')
-        return homework_statuses.json()
+                f'текст: {homework_statuses.text}'
+            )
+        try:
+            return homework_statuses.json()
+        except exceptions.JsonError as error:
+            homework_statuses = f'Формат полученного ответа не JSON {error}'
     except Exception:
         raise exceptions.ConnectionError(
             'Не верный код ответа параметры запроса: url = {url},'

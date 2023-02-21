@@ -26,3 +26,9 @@ class TelegramError(NotForSending):
     """Ошибка телеграма."""
 
     pass
+
+
+class JsonError(Exception):
+    """Неверный формат JSON."""
+
+    pass
